@@ -1,0 +1,39 @@
+<section class="to-do-list">
+  <div class="container">
+    <div class="col-md-3">
+      <label for="taskNameLabel">
+        <h3> Nombre de la tarea: </h3>
+      </label>
+    </div>
+    <div class="form-row d-flex">
+      <div class="col-md-10">
+        <input class="form-control" name="taskName" type="text" v-model="taskName">
+      </div>
+      <div class="col-md-2">
+        <button type="button" class="btn btn-outline-primary" @click.prevent="pushToTaskList"><i
+            class="far fa-plus-square"></i> Agregar Tarea</button>
+      </div>
+    </div>
+    <br>
+    <div>
+      <div class="alert alert-warning" role="alert" v-if="isWrong">
+        <strong>Las nuevas tareas deben tener título y descripción !!!</strong>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <textarea class="form-control" id="validateTextArea" placeholder="Ingrese la descripción de su tarea..."
+        name="taskDescription" cols="30" rows="5" v-model="taskDescription"></textarea>
+    </div>
+    <div class="mb-3">
+      <ul class="list-group">
+        <li class="list-group-item" v-for="(task, index) in taskList">
+          <b>{{ task.name }}</b>
+          <p>{{ task.description }}</p>
+          <button type="button" class="btn btn-outline-danger float-right" @click="removeTask(index)"><i
+              class="fas fa-minus"></i> Eliminar Tarea</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
